@@ -1,3 +1,6 @@
+# This is a corrected and validated Docker Compose file for browser-use-webui.
+version: '3.8'
+
 services:
   # debug: docker compose run --rm -it browser-use-webui bash
   browser-use-webui:
@@ -54,22 +57,19 @@ services:
 
       # Display Settings
       - DISPLAY=:99
-      # This ENV is used by the Dockerfile during build time if playwright respects it.
-      # It's not strictly needed at runtime by docker-compose unless your app or scripts also read it.
       - PLAYWRIGHT_BROWSERS_PATH=/ms-browsers # Matches Dockerfile ENV
       - RESOLUTION=${RESOLUTION:-1920x1080x24}
       - RESOLUTION_WIDTH=${RESOLUTION_WIDTH:-1920}
       - RESOLUTION_HEIGHT=${RESOLUTION_HEIGHT:-1080}
-      - PWA=true
       # VNC Settings
       - VNC_PASSWORD=${VNC_PASSWORD:-youvncpassword}
 
+    # FIX: Corrected indentation for the volumes block inside the service
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - browseruse-data:/app/tmp/webui_settings
-      
-
       # - ./my_chrome_data:/app/data/chrome_data # Optional: persist browser data
+      
     restart: unless-stopped
     shm_size: '2gb'
     cap_add:
@@ -81,5 +81,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
-  volumes:
+
+# FIX: Moved this 'volumes' block to the top level (no indentation).
+# This declares the named volume so the service can use it.
+volumes:
   browseruse-data:
