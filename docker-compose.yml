@@ -67,6 +67,7 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - browseruse-data:/app/tmp/webui_settings
+      
 
       # - ./my_chrome_data:/app/data/chrome_data # Optional: persist browser data
     restart: unless-stopped
@@ -80,3 +81,5 @@ services:
       interval: 10s
       timeout: 5s
       retries: 3
+  volumes:
+  browseruse-data:
