@@ -60,12 +60,14 @@ services:
       - RESOLUTION=${RESOLUTION:-1920x1080x24}
       - RESOLUTION_WIDTH=${RESOLUTION_WIDTH:-1920}
       - RESOLUTION_HEIGHT=${RESOLUTION_HEIGHT:-1080}
-
+      - PWA = true
       # VNC Settings
       - VNC_PASSWORD=${VNC_PASSWORD:-youvncpassword}
 
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - browseruse-data:/app/tmp/webui_settings
+
       # - ./my_chrome_data:/app/data/chrome_data # Optional: persist browser data
     restart: unless-stopped
     shm_size: '2gb'
