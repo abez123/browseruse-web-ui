@@ -60,7 +60,7 @@ services:
       - RESOLUTION=${RESOLUTION:-1920x1080x24}
       - RESOLUTION_WIDTH=${RESOLUTION_WIDTH:-1920}
       - RESOLUTION_HEIGHT=${RESOLUTION_HEIGHT:-1080}
-      - PWA = true
+      - PWA=true
       # VNC Settings
       - VNC_PASSWORD=${VNC_PASSWORD:-youvncpassword}
 
